@@ -16,7 +16,7 @@ button.addEventListener(
 
     const todo = { label: input.value, complete: false };
     store.dispatch(new fromStore.AddTodo(todo));
-    
+
     input.value = "";
   },
   false
@@ -31,7 +31,8 @@ destroy.addEventListener("click", unsubscribe, false);
 todoList.addEventListener("click", function(event) {
   const target = event.target as HTMLButtonElement;
   if (target.nodeName.toLowerCase() === "button") {
-    console.log(target);
+    const todoToRemove = JSON.parse(target.getAttribute('data-todo') as string);
+    store.dispatch(new fromStore.RemoveTodo(todoToRemove));
   }
 });
 
